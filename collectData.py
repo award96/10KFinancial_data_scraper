@@ -64,7 +64,10 @@ def parseTenK(tenkJson):
 def parseProfile(profileJson):
     industry = safe_index(profileJson, 'finnhubIndustry', 'NA', True)
     marketCap = safe_index(profileJson, 'marketCapitalization', 'NA', True)
-    return [industry, marketCap]
+    shareOutstanding = safe_index(profileJson, 'shareOutstanding', 'NA',True)
+    exchange = safe_index(profileJson, 'exchange', 'NA',True)
+
+    return [industry, marketCap, shareOutstanding, exchange]
 
 
 def collect_tenK_data(inputPath, outputPath):
@@ -110,6 +113,8 @@ def add_profile_data(inputPath, outputPath):
     symbol_dict = {}
     industry_arr = []
     marketCap_arr = []
+    shares_arr = []
+    exchange_arr = []
     for index, row in df.iterrows():
         symbol = row['symbol']
         
@@ -117,21 +122,31 @@ def add_profile_data(inputPath, outputPath):
             new_data_arr = symbol_dict[symbol]
             industry_arr.append(new_data_arr[0])
             marketCap_arr.append(new_data_arr[1])
+            shares_arr.append(new_data_arr[2])
+            exchange_arr.append(new_data_arr[3])
             continue
         print(f"\nAdding profile data to: {symbol}\n")
         profile_json = finnAPI.get_profile_json(symbol)
-        industry, marketCap = parseProfile(profile_json)
+        industry, marketCap, shares, exchange = parseProfile(profile_json)
         industry_arr.append(industry)
         marketCap_arr.append(marketCap)
-        symbol_dict[symbol] = [industry, marketCap]
+        shares_arr.append(shares)
+        exchange_arr.append(exchange)
+        symbol_dict[symbol] = [industry, marketCap, shares, exchange]
     loc1 = len(df.columns)
     loc2 = loc1 + 1
+    loc3 = loc2 + 1
+    loc4 = loc3 + 1
     try:
         df.insert(loc=loc1, column="industry", value=industry_arr)
         df.insert(loc=loc2, column="marketCap", value=marketCap_arr)
+        df.insert(loc=loc3, column="sharesOutstanding", value=shares_arr)
+        df.insert(loc=loc4, column="exchange", value=exchange_arr)
     except Exception:
         df.insert(loc=4, column="industry", value=industry_arr)
         df.insert(loc=5, column="marketCap", value=marketCap_arr)
+        df.insert(loc=6, column="sharesOutstanding", value=shares_arr)
+        df.insert(loc=7, column="exchange", value=exchange_arr)
     df.to_csv(outputPath)
 
 def collect(inputPath, outputPath):

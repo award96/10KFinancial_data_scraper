@@ -9,7 +9,7 @@ def safe_index(dict_obj, key, returnOnError, printObject=False):
         traceback.print_exc()
         print(f"\nreturning {returnOnError}\n")
         if printObject:
-            print(f"problematic dict_obj:\n{dict_obj}\n")
+            print(f"dict_obj:  {dict_obj}\nkey: {key}\n")
         return returnOnError
 
 
@@ -34,3 +34,6 @@ def generate_all_year_pairs(yearRange):
         low = yearRange[1]
         high -= 1
     return allPairs
+
+def name_json_file(symbol):
+    return 'data/' + symbol + '_json.csv'
