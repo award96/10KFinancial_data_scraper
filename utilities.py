@@ -1,5 +1,8 @@
 import traceback
 
+"""
+    Functions that have a more general use across the package
+"""
 
 def safe_index(dict_obj, key, returnOnError, printObject=False):
     try:
@@ -55,7 +58,7 @@ def generate_years_list(year, baseYear):
     return output
 
 def name_json_file(symbol):
-    return 'data/' + symbol + '_json.csv'
+    return 'json_data/' + symbol + '_json.csv'
 
 def name_horiz_col(concept, year):
     if (type(concept) != str):

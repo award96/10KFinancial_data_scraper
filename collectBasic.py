@@ -1,14 +1,21 @@
-import finnAPI
 import pandas as pd
+import finnAPI
 from utilities import safe_index
 
+"""
+    Using the finnhub API collect introductory information on 
+    all available companies.
 
-def collect(symbolPath, basicPath):
-    find_symbols(symbolPath)
+    exchange_to_collect: refer to https://finnhub.io/docs/api#stock-symbols
+                            a good default is 'US'
+"""
+
+def collect(symbolPath, basicPath, exchange_to_collect):
+    find_symbols(symbolPath, exchange_to_collect)
     add_profile_data(symbolPath, basicPath)
 
-def find_symbols(outputPath):
-    resp = finnAPI.get_symbol_json()
+def find_symbols(outputPath, exchange_to_collect):
+    resp = finnAPI.get_symbol_json(exchange=exchange_to_collect)
     rows = []
     colNames = ['symbol', 'name', 'type']
     for i in range(len(resp)):

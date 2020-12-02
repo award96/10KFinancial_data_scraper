@@ -1,20 +1,27 @@
-from horizontalSuper import HorizontalSuper
-import generateHorizontal
-
 import pandas as pd
 import numpy as np
 
+from horizontalSuper import HorizontalSuper
+import generateHorizontal
+
+"""
+    An object to keep track of the meaning behind a dataframe (ie what industry are we looking at)
+    and to smooth the process of synthesizing JSON and CSV data, then writing it to a new csv file.
+
+    hp = HorizontalProfile(**args)
+    hp.write_to_output()
+"""
 
 class HorizontalProfile(HorizontalSuper):
     def __init__(
         self,
-        filepath,
+        filepath, # same as basicPath in collectBasic.collect method
         baseYear=2018,
         year=2019,
         symbol=None,
         industry="Biotechnology",
-        outputPath=None,
-        inputPath=None,
+        outputPath=None, # what path to write the finished HP to
+        inputPath=None, # if you've previously instantiated a HP and written it to csv
         conceptList=['NetIncomeLoss', 'ResearchAndDevelopmentExpense']):
 
         super().__init__(filepath, 

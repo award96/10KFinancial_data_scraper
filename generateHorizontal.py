@@ -1,13 +1,17 @@
-from utilities import name_json_file, name_horiz_col, generate_years_list, safe_index, list_to_dict
-
 import pandas as pd
 import numpy as np
 import json
 
+from utilities import name_json_file, name_horiz_col, generate_years_list, safe_index, list_to_dict
+
 """
-    For use by a HorizontalProfile object. Turn json data downloaded
-    by collectJson and the 'basic' data downloaded by collectBasic into
-    a full horizontal profile of many companies of the same industry
+    For use by a HorizontalProfile object. Add JSON data downloaded
+    by collectJson.py into the 'basic' csv data downloaded by 
+    collectBasic.py into a full horizontal profile of 
+    many companies of the same industry
+
+    To use this module, create a HorizontalProfile object and the 
+    'generate' function will be called upon instantiation.
 """
 
 def generate(inputPath, industry, conceptList, year, baseYear):
@@ -62,6 +66,3 @@ def add_empty_cols(df, conceptList, year, baseYear):
             newCol = [np.nan] * length_df
             df.insert(loc=len(df.columns), column=colNames[i], value=newCol)
     return df
-
-# df = generate('basic.csv', 'Biotechnology', ['NetIncomeLoss', 'ResearchAndDevelopmentExpense'], 2019, 2018)
-# df.to_csv('filled.csv', index=False)

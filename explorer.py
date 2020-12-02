@@ -1,13 +1,16 @@
-from utilities import name_json_file, safe_index
-
 import os
 import pandas as pd
 import json
 
+from utilities import name_json_file, safe_index
+
 """
     When deciding what 'concepts' (essentially finnhub's keys as to what the data you're shown means)
-    to record data on, this script provides the function 'explore' which will give the user an overview of
+    to record data on, this module provides the function 'explore', which will give the user an overview of
     what concepts are frequently recorded in the data, and what years are frequently recorded.
+
+    What this module will tell you is what concepts are worth using as 'keys' to parse through the JSON data,
+    and what concepts hardly appear at all.
 """
 
 def count_concepts_subreport(subreport, dictionary):
@@ -75,11 +78,6 @@ def explore(filepath, industry):
     print("\n\nCOUNT OF IC CONCEPTS VIEWED\n")
     print_findings(ic_concepts, count_docs//4)
     print("\n##############\n")
-
-    
-        
-
-#explore('basic.csv', 'Biotechnology')
 
 """
 Structure of API response

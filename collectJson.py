@@ -1,8 +1,16 @@
-import finnAPI
-from utilities import name_json_file
 import json
 import pandas as pd
+import finnAPI
+from utilities import name_json_file
 
+"""
+    Using the finnhub API, collect the JSON data for companies
+    that are in the csv output by collectBasic.py, and are in one of 
+    the industries from industryList
+
+    Use explorer.py to understand the JSON response data better, 
+    or use a JSON visualizer.
+"""
 def collect(inputPath, industryList):
     df = pd.read_csv(inputPath, index_col=0)
     for industry in industryList:

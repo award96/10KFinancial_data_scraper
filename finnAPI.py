@@ -4,6 +4,9 @@ import time
 
 """
     handle api requests
+
+    API_KEY_PATH should lead to a .txt file which
+    has the API key and nothing else.
 """
 
 API_KEY_PATH = "api.txt"
@@ -20,7 +23,7 @@ def get_api_key():
             return api_key
     except FileNotFoundError as e:
         print(e)
-        print("Please include a file named api.txt with your api key in the same folder as this program")
+        print(f"Please include a file named {API_KEY_PATH} with your api key in the same folder as this program")
         exit()
 
 
