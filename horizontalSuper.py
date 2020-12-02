@@ -41,6 +41,12 @@ class HorizontalSuper:
                 raise ValueError(f"self.df is of type {type(self.df)}, should be pandas dataframe")
             return self.df.copy(deep=True)
 
+    def get_col_names(self):
+        if self.df:
+            return list(df.columns)
+        else:
+            raise ValueError("self.df is None type")
+
     def write_to_output(self, outputPath=None):
         if outputPath:
             self.outputPath = outputPath

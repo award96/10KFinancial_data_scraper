@@ -28,10 +28,9 @@ class HorizontalProfile(HorizontalSuper):
         self.year = year
 
         self.df = self.instantiate_df()
-        self.analysis = []
 
     def __repr__(self):
-        start = f"HorizontalProfile generated from filepath: {self.filepath}\n"
+        start = f"HorizontalProfile object generated from filepath: {self.filepath}\n"
         if self.inputPath:
             start = f"HorizontalProfile copied from inputPath: {self.inputPath}\n"
         middle = f"Years range is {self.baseYear} to {self.year}\nThe values are from the list of concepts: {self.conceptList}\n"
@@ -50,12 +49,6 @@ class HorizontalProfile(HorizontalSuper):
 
     def get_year(self):
         return self.year
-
-    def get_col_names(self, excludeBase=False):
-        if self.df:
-            return list(df.columns)
-        else:
-            raise ValueError("self.df is None type")
 
     def instantiate_df(self):
         print(f"\n\nInstantiating df")
