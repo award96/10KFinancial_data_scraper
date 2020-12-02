@@ -32,8 +32,6 @@ def generate(inputPath, industry, conceptList, year, baseYear):
             ic = safe_index(report, 'ic', [], printObject=True)
             for subReport in [bs, cf, ic]:
                 add_data(df, subReport, conceptDict, thisYear, index)
-    df.info()
-    print(df.head(30))
     return df
 
 

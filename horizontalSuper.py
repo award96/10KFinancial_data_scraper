@@ -1,5 +1,4 @@
 import pandas as pd
-import horizontalView
 
 class HorizontalSuper:
     def __init__(
@@ -34,7 +33,7 @@ class HorizontalSuper:
         return self.conceptList.copy()
 
     def get_df(self):
-        if not self.df:
+        if self.df is None:
                 raise ValueError("self.df is not yet defined")
         else:
             if (type(self.df) != pd.core.frame.DataFrame):
@@ -42,10 +41,10 @@ class HorizontalSuper:
             return self.df.copy(deep=True)
 
     def get_col_names(self):
-        if self.df:
-            return list(df.columns)
+        if self.df is None:
+            raise ValueError("self.df is NoneType")
         else:
-            raise ValueError("self.df is None type")
+            return list(self.df.columns)
 
     def write_to_output(self, outputPath=None):
         if outputPath:

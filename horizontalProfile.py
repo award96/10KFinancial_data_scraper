@@ -29,7 +29,7 @@ class HorizontalProfile(HorizontalSuper):
 
         self.df = self.instantiate_df()
 
-    def __repr__(self):
+    def __str__(self):
         start = f"HorizontalProfile object generated from filepath: {self.filepath}\n"
         if self.inputPath:
             start = f"HorizontalProfile copied from inputPath: {self.inputPath}\n"
@@ -41,7 +41,7 @@ class HorizontalProfile(HorizontalSuper):
             optionOutput = f"If the results are written to output, the path will be {self.outputPath}"
         return start + middle + optionSymbol + optionOutput
 
-    def __str__(self):
+    def __repr__(self):
         return f"filepath: {self.filepath} , baseYear: {self.baseYear} , year: {self.year} symbol: {self.symbol} , industry: {self.industry} , inputPath: {self.inputPath} , outputPath: {self.outputPath} , conceptList: {self.conceptList}"
 
     def get_baseYear(self):
