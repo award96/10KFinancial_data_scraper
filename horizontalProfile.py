@@ -3,6 +3,7 @@ import numpy as np
 
 from horizontalSuper import HorizontalSuper
 import generateHorizontal
+import addMetrics
 
 """
     An object to keep track of the meaning behind a dataframe (ie what industry are we looking at)
@@ -68,5 +69,27 @@ class HorizontalProfile(HorizontalSuper):
                                             self.get_conceptList(),
                                             self.year,
                                             self.baseYear)
+    def validateDF(self, newDF):
+        if (type(newDF) != pd.core.frame.DataFrame):
+            raise ValueError(f"new dataframe is of type {type(newDF)}, should be pandas dataframe")
+        lengthOld = self.df.shape[0]
+        lengthNew = newDF.shape[0]
+        colNumOld = len(list(self.df.columns))
+        colNumNew = len(list(newDF.columns))
+        if lengthOld == lengthNew and colNumOld < colNumNew:
+            return True
+        else:
+            print("newDF.info():")
+            newDF.info()
+            raise ValueError(f"New Dataframe has lost columns or added rows\nlength: {lengthNew}, width: {colNumNew}")
+
+    def add_metrics(self, newMetricsList=['operatingMargin']):
+        self.metricsList = newMetricsList
+        newDF = addMetrics.add(self.df, 
+                                self.year, 
+                                self.baseYear, 
+                                self.metricsList)
+        if self.validateDF(newDF):
+            self.df = newDF
     
 
