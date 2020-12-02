@@ -60,3 +60,8 @@ def get_symbol_json(exchange = "US"):
     r = requests.get(
         f'https://finnhub.io/api/v1/stock/symbol?exchange={exchange}')
     return handle_response(r, get_symbol_json, exchange)
+
+def get_basic_financials_json(symbol):
+    r = requests.get(
+        f'https://finnhub.io/api/v1/stock/metric?symbol={symbol}&metric=all&token={API_KEY}')
+    return handle_response(r, get_basic_financials_json, symbol)

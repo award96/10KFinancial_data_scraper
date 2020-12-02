@@ -1,5 +1,5 @@
 import traceback
-
+import numpy as np
 """
     Functions that have a more general use across the package
 """
@@ -16,16 +16,15 @@ def safe_index(dict_obj, key, returnOnError, printObject=False):
         return returnOnError
 
 
-def clean_duplicates(messyList):
-    output = []
-    d = {}
-    for item in messyList:
-        if item in d:
-            continue
-        else:
-            output.append(item)
-            d[item] = True
-    return output
+def add_empty_cols(df, conceptList, year, baseYear):
+    yearList = generate_years_list(year, baseYear)
+    length_df = df.shape[0]
+    for year in yearList:
+        colNames = [name_horiz_col(concept, year) for concept in conceptList]
+        for i in range(len(colNames)):
+            newCol = [np.nan] * length_df
+            df.insert(loc=len(df.columns), column=colNames[i], value=newCol)
+    return df
 
 def generate_all_year_pairs(yearRange):
     allPairs = []
@@ -57,6 +56,14 @@ def generate_years_list(year, baseYear):
         year -= 1
     return output
 
+def split_year(period):
+    if not period:
+        return None
+    elif type(period) == str and len(period) > 4:
+        return period.split('-')[0]
+    else:
+        raise ValueError(f"Period is not of type string and format 'YYYY-MM-DD'\ntype(period) was {type(period)}\nprint(period): {print(period)}")
+
 def name_json_file(symbol):
     return 'json_data/' + symbol + '_json.csv'
 
@@ -64,8 +71,13 @@ def name_horiz_col(concept, year):
     if (type(concept) != str):
         concept = str(concept)
     return str(year) + concept
+
+def name_stock_col(year):
+    return str(year) + 'stockPrice'
+
 def list_to_dict(list_):
     d = {}
     for item in list_:
         d[item] = True
     return d
+

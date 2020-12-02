@@ -2,7 +2,12 @@ import pandas as pd
 import numpy as np
 import json
 
-from utilities import name_json_file, name_horiz_col, generate_years_list, safe_index, list_to_dict
+from utilities import (name_json_file, 
+                        name_horiz_col, 
+                        generate_years_list, 
+                        safe_index, 
+                        list_to_dict,
+                        add_empty_cols)
 
 """
     For use by a HorizontalProfile object. Add JSON data downloaded
@@ -55,14 +60,3 @@ def add_data_subroutine(df, item, thisConcept, thisYear, conceptDict, key, index
         if (type(thisVal) != int):
             thisVal = np.nan
         df.at[index, thisCol] = thisVal
-
-
-def add_empty_cols(df, conceptList, year, baseYear):
-    yearList = generate_years_list(year, baseYear)
-    length_df = df.shape[0]
-    for year in yearList:
-        colNames = [name_horiz_col(concept, year) for concept in conceptList]
-        for i in range(len(colNames)):
-            newCol = [np.nan] * length_df
-            df.insert(loc=len(df.columns), column=colNames[i], value=newCol)
-    return df

@@ -4,9 +4,10 @@ import finnAPI
 from utilities import name_json_file
 
 """
-    Using the finnhub API, collect the JSON data for companies
-    that are in the csv output by collectBasic.py, and are in one of 
-    the industries from industryList
+    Using the finnhub API Financials as Reported endpoint, 
+    collect the JSON data for companies that are in the csv 
+    output by collectBasic.py, and are in one of the industries 
+    from industryList
 
     Use explorer.py to understand the JSON response data better, 
     or use a JSON visualizer.
