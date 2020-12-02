@@ -4,7 +4,11 @@ import pandas as pd
 import numpy as np
 import json
 
-
+"""
+    For use by a HorizontalProfile object. Turn json data downloaded
+    by collectJson and the 'basic' data downloaded by collectBasic into
+    a full horizontal profile of many companies of the same industry
+"""
 
 def generate(inputPath, industry, conceptList, year, baseYear):
     conceptDict = list_to_dict(conceptList)
@@ -61,5 +65,5 @@ def add_empty_cols(df, conceptList, year, baseYear):
             df.insert(loc=len(df.columns), column=colNames[i], value=newCol)
     return df
 
-df = generate('basic.csv', 'Biotechnology', ['NetIncomeLoss', 'ResearchAndDevelopmentExpense'], 2019, 2018)
-df.to_csv('filled.csv', index=False)
+# df = generate('basic.csv', 'Biotechnology', ['NetIncomeLoss', 'ResearchAndDevelopmentExpense'], 2019, 2018)
+# df.to_csv('filled.csv', index=False)

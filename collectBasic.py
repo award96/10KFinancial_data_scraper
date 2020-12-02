@@ -2,6 +2,11 @@ import finnAPI
 import pandas as pd
 from utilities import safe_index
 
+
+def collect(symbolPath, basicPath):
+    find_symbols(symbolPath)
+    add_profile_data(symbolPath, basicPath)
+
 def find_symbols(outputPath):
     resp = finnAPI.get_symbol_json()
     rows = []
@@ -63,8 +68,5 @@ def record_data(df, industry_arr, marketC_arr, shares_arr, exchange_arr, outputP
         return
     df.to_csv(outputPath)
 
-def collect(symbolPath, basicPath):
-    find_symbols(symbolPath)
-    add_profile_data(symbolPath, basicPath)
 
 

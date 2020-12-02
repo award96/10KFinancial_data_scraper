@@ -16,4 +16,4 @@ def collect(inputPath, industryList):
                 json.dump(jsonResp, file)
 
 
-collect('basic.csv', ['Pharmaceuticals', 'Health Care', 'Life Sciences Tools & Services'])
+# collect('basic.csv', ['Pharmaceuticals', 'Health Care', 'Life Sciences Tools & Services'])

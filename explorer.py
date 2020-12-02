@@ -4,6 +4,12 @@ import os
 import pandas as pd
 import json
 
+"""
+    When deciding what 'concepts' (essentially finnhub's keys as to what the data you're shown means)
+    to record data on, this script provides the function 'explore' which will give the user an overview of
+    what concepts are frequently recorded in the data, and what years are frequently recorded.
+"""
+
 def count_concepts_subreport(subreport, dictionary):
     if type(subreport) == dict:
        for key in subreport:
@@ -73,7 +79,7 @@ def explore(filepath, industry):
     
         
 
-explore('basic.csv', 'Biotechnology')
+#explore('basic.csv', 'Biotechnology')
 
 """
 Structure of API response
