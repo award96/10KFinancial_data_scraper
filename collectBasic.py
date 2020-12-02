@@ -1,7 +1,6 @@
 import finnAPI
 import pandas as pd
 from utilities import safe_index
-from collectData import parseProfile
 
 def find_symbols(outputPath):
     resp = finnAPI.get_symbol_json()
@@ -31,13 +30,21 @@ def add_profile_data(inputPath, outputPath, save_point = 100):
 
         symbol = row['symbol']
         print(f"\nsymbol={symbol}")
-        profile_json = finnAPI.get_profile_json(symbol)
-        industry, marketCap, shares, exchange = parseProfile(profile_json)
+        profileJson = finnAPI.get_profile_json(symbol)
+        industry, marketCap, shares, exchange = parse_profile(profileJson)
         industry_arr.append(industry)
         marketC_arr.append(marketCap)
         shares_arr.append(shares)
         exchange_arr.append(exchange)
     record_data(df, industry_arr, marketC_arr, shares_arr, exchange_arr, outputPath, incomplete=False)
+
+def parse_profile(profileJson):
+    industry = safe_index(profileJson, 'finnhubIndustry', 'NA', True)
+    marketCap = safe_index(profileJson, 'marketCapitalization', 'NA', True)
+    shareOutstanding = safe_index(profileJson, 'shareOutstanding', 'NA',True)
+    exchange = safe_index(profileJson, 'exchange', 'NA',True)
+
+    return [industry, marketCap, shareOutstanding, exchange]
 
 def record_data(df, industry_arr, marketC_arr, shares_arr, exchange_arr, outputPath, incomplete=True):
     if incomplete:
