@@ -22,7 +22,7 @@ def count_concepts_subreport(subreport, dictionary):
 
 def print_findings(dictionary, minimum=25):
     for k, v in sorted(dictionary.items(), key=lambda p:p[1], reverse=True):
-        if "NetIncome" in k or "netIncome" in k or "Netincome" in k or "netincome" in k:
+        if v > minimum:
             print(f"{k}:   {v}")
 
 
@@ -30,6 +30,7 @@ def explore(filepath, industry):
     count_docs = 0
     df = pd.read_csv(filepath, index_col=0)
     df = df[df['industry'] == industry]
+    length = df.shape[0]
     years = {}
     bs_concepts = {}
     cf_concepts = {}
@@ -59,7 +60,7 @@ def explore(filepath, industry):
     print("\n\ndone!\n")
     print(f"{count_docs} 10K statements viewed")
     print("\nCOUNT OF YEARS VIEWED\n")
-    for key in years:
+    for key, val in sorted(years.items(), reverse=True):
         print(f"{key}: {years[key]}")
     print("\n\nCOUNT OF BS CONCEPTS VIEWED\n")
     print_findings(bs_concepts, count_docs//4)
