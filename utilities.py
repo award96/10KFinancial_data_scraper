@@ -5,6 +5,11 @@ import numpy as np
 """
 
 def safe_index(dict_obj, key, returnOnError, printObject=False):
+    """
+        The JSON responses from FinnHub API do not have the same keys
+        every time. A missing key indicates that the given data 
+        is not recorded in the FinnHub Database.
+    """
     try:
         return dict_obj[key]
     except Exception:
@@ -63,7 +68,10 @@ def split_year(period):
         return period.split('-')[0]
     else:
         raise ValueError(f"Period is not of type string and format 'YYYY-MM-DD'\ntype(period) was {type(period)}\nprint(period): {print(period)}")
+def split_year_from_col(colName):
+    return (colName[:4], colName[4:])
 
+    print(split_val)
 def name_json_file(symbol):
     return 'json_data/' + symbol + '_json.csv'
 

@@ -17,6 +17,9 @@ from utilities import (name_json_file,
 
     To use this module, create a HorizontalProfile object and the 
     'generate' function will be called upon instantiation.
+
+    It's normal to have a lot of keyErrors, the data on FinnHub is
+    not very consistent.
 """
 
 def generate(inputPath, industry, conceptList, year, baseYear):

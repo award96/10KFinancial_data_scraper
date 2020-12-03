@@ -41,6 +41,7 @@ def handle_response(response, callback_function, symbol):
         seconds = 60
         print(f"API rate limit exceeded. Pausing {seconds/60} minute(s)")
         time.sleep(seconds)
+        print("Resuming...")
         json_resp = callback_function(symbol)
     return json_resp
 

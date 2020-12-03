@@ -67,7 +67,7 @@ def record_data(df, industry_arr, marketC_arr, shares_arr, exchange_arr, outputP
     loc4 = loc3 + 1
     try:
         df.insert(loc=loc1, column="industry", value=industry_arr)
-        df.insert(loc=loc2, column="marketCap2020", value=marketC_arr)
+        df.insert(loc=loc2, column="2020marketCap", value=marketC_arr)
         df.insert(loc=loc3, column="sharesOutstanding", value=shares_arr)
         df.insert(loc=loc4, column="exchange", value=exchange_arr)
     except Exception:

@@ -69,27 +69,36 @@ class HorizontalProfile(HorizontalSuper):
                                             self.get_conceptList(),
                                             self.year,
                                             self.baseYear)
-    def validateDF(self, newDF):
+    def validateDF(self, newDF, write_on_error):
         if (type(newDF) != pd.core.frame.DataFrame):
             raise ValueError(f"new dataframe is of type {type(newDF)}, should be pandas dataframe")
         lengthOld = self.df.shape[0]
         lengthNew = newDF.shape[0]
         colNumOld = len(list(self.df.columns))
         colNumNew = len(list(newDF.columns))
-        if lengthOld == lengthNew and colNumOld < colNumNew:
+        if (lengthOld == lengthNew) and (colNumOld < colNumNew):
             return True
         else:
+            print("lengthNew")
+            print(lengthNew)
+            print("lengthOld")
+            print(lengthOld)
+            print("colNumNew")
+            print(colNumNew)
+            print("colNumOld")
+            print(colNumOld)
+            if write_on_error:
+                newDF.to_csv(self.outputPath.split('.csv')[0] + '_error.csv', index=False)
             print("newDF.info():")
             newDF.info()
             raise ValueError(f"New Dataframe has lost columns or added rows\nlength: {lengthNew}, width: {colNumNew}")
 
-    def add_metrics(self, newMetricsList=['operatingMargin']):
+    def add_metrics(self, newMetricsList=['operatingMargin'], write_on_error=True):
         self.metricsList = newMetricsList
-        newDF = addMetrics.add(self.df, 
+        newDF = addMetrics.add(self.get_df(), 
                                 self.year, 
                                 self.baseYear, 
                                 self.metricsList)
-        if self.validateDF(newDF):
-            self.df = newDF
-    
 
+        if self.validateDF(newDF, write_on_error):
+            self.df = newDF

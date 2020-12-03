@@ -10,6 +10,9 @@ from utilities import (generate_years_list,
 """
     Utilize the basic financials FinnHub API endpoint to add time series
     metrics to your dataframe
+
+    It's normal to have a lot of keyErrors, the data on FinnHub is not 
+    very consistent
 """
 def add(df, year, baseYear, conceptList=['operatingMargin']):
     df = add_empty_cols(df, conceptList, year, baseYear)
@@ -23,7 +26,7 @@ def add(df, year, baseYear, conceptList=['operatingMargin']):
             for concept_thisYear in concept_annual:
                 period = safe_index(concept_thisYear, 'period', None)
                 value = safe_index(concept_thisYear, 'v', np.nan)
-                thisYear = split_year(period)
+                thisYear = int(split_year(period))
                 if thisYear and thisYear <= year and thisYear >= baseYear:
                     thisCol = name_horiz_col(concept, thisYear)
                     df.at[index, thisCol] = value
