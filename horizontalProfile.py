@@ -4,7 +4,7 @@ import numpy as np
 from horizontalSuper import HorizontalSuper
 import generateHorizontal
 import addMetrics
-
+import timeSeries
 """
     An object to keep track of the meaning behind a dataframe (ie what industry are we looking at)
     and to smooth the process of synthesizing JSON and CSV data, then writing it to a new csv file.
@@ -79,14 +79,6 @@ class HorizontalProfile(HorizontalSuper):
         if (lengthOld == lengthNew) and (colNumOld < colNumNew):
             return True
         else:
-            print("lengthNew")
-            print(lengthNew)
-            print("lengthOld")
-            print(lengthOld)
-            print("colNumNew")
-            print(colNumNew)
-            print("colNumOld")
-            print(colNumOld)
             if write_on_error:
                 newDF.to_csv(self.outputPath.split('.csv')[0] + '_error.csv', index=False)
             print("newDF.info():")
@@ -102,3 +94,7 @@ class HorizontalProfile(HorizontalSuper):
 
         if self.validateDF(newDF, write_on_error):
             self.df = newDF
+
+    def add_timeSeries(self):
+        new_timeSeries = timeSeries.convert(self.get_df())
+        self.timeSeries = new_timeSeries

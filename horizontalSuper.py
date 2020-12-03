@@ -23,6 +23,7 @@ class HorizontalSuper:
         self.inputPath = inputPath
         self.conceptList = conceptList
         self.df = None
+        self.timeSeries = None
 
     def get_filepath(self):
         return self.filepath
@@ -39,13 +40,22 @@ class HorizontalSuper:
     def get_conceptList(self):
         return self.conceptList.copy()
 
-    def get_df(self):
-        if self.df is None:
-                raise ValueError("self.df is not yet defined")
+    def __get_dataframe_obj(self, dfObj):
+        """
+            Do not call this function outside of the class
+        """
+        if dfObj is None:
+                raise ValueError("dataframe is not yet defined")
         else:
-            if (type(self.df) != pd.core.frame.DataFrame):
-                raise ValueError(f"self.df is of type {type(self.df)}, should be pandas dataframe")
-            return self.df.copy(deep=True)
+            if (type(dfObj) != pd.core.frame.DataFrame):
+                raise ValueError(f"dataframe is of type {type(dfObj)}, should be pandas dataframe")
+            return dfObj.copy(deep=True)
+
+    def get_df(self):
+        return self.__get_dataframe_obj(self.df)
+
+    def get_timeSeries(self):
+        return self.__get_dataframe_obj(self.timeSeries)
 
     def get_col_names(self):
         if self.df is None:
@@ -53,10 +63,21 @@ class HorizontalSuper:
         else:
             return list(self.df.columns)
 
-    def write_to_output(self, outputPath=None):
+    def __write_df_obj(self, dfObj, outputPath):
+        """
+            Do not call this function outside of the class
+        """
         if outputPath:
             self.outputPath = outputPath
         if (not outputPath) and (not self.outputPath):
             raise ValueError(
                 "outputPath is None.\noutputPath is not defined in the method call, and outputPath was not defined upon instantiation")
-        self.df.to_csv(self.outputPath, index=False)
+        dfObj.to_csv(self.outputPath, index=False)
+
+    def write_to_output(self, outputPath=None):
+        self.__write_df_obj(self.df, outputPath)
+
+    def write_timeSeries_to_output(self, outputPath=None):
+        self.__write_df_obj(self.timeSeries, outputPath)
+
+    
