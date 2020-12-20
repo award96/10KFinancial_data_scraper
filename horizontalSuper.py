@@ -65,7 +65,7 @@ class HorizontalSuper:
 
     def __write_df_obj(self, dfObj, outputPath):
         """
-            Do not call this function outside of the class
+            Class Method
         """
         if outputPath:
             self.outputPath = outputPath

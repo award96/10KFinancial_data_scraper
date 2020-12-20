@@ -71,9 +71,8 @@ def split_year(period):
 def split_year_from_col(colName):
     return (colName[:4], colName[4:])
 
-    print(split_val)
 def name_json_file(symbol):
-    return 'json_data/' + symbol + '_json.csv'
+    return 'json_data/' + symbol + '.json'
 
 def name_horiz_col(concept, year):
     if (type(concept) != str):
