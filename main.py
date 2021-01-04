@@ -15,6 +15,14 @@ if __name__ == "__main__":
     industry = 'Biotechnology'
     collectJson.collect(basic_data_output, [industry])
 
+    # Now that you have collected the JSON data, you can run explorer.py to 
+    # see what concepts should be in your concept list
+    """
+        uncomment below to see the most common concepts to inform your concept list
+    """
+    # import explorer
+    # explorer.explore(basic_data_output, industry)
+
     from horizontalProfile import HorizontalProfile
     # Synthesize the json data and csv data into a comprehensive csv file.
     # For each company in [basic_data_output], if it fits the industry,

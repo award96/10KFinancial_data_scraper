@@ -78,7 +78,7 @@ def explore(filepath, industry):
     print("\n\nCOUNT OF IC CONCEPTS VIEWED\n")
     print_findings(ic_concepts, count_docs//4)
     print("\n##############\n")
-
+    
 """
 Structure of API response
 

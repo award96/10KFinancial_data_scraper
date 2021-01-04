@@ -16,7 +16,7 @@ from utilities import (name_json_file,
     many companies of the same industry
 
     To use this module, create a HorizontalProfile object and the 
-    'generate' function will be called upon instantiation.
+    'generate' class method will be called upon instantiation.
 
     It's normal to have a lot of keyErrors, the data on FinnHub is
     not very consistent.
