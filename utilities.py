@@ -6,9 +6,20 @@ import numpy as np
 
 def safe_index(dict_obj, key, returnOnError, printObject=False):
     """
-        The JSON responses from FinnHub API do not have the same keys
-        every time. A missing key indicates that the given data 
-        is not recorded in the FinnHub Database.
+        Index into a dict, and if the key is not found, handle the error
+
+            The JSON responses from FinnHub API do not have the same keys
+            every time. A missing key indicates that the given data 
+            is not recorded in the FinnHub Database.
+        ARGS
+            dict_obj - dict
+            key - str
+            returnOnError - any type - what is to be returned if an error is raised
+            printObject - bool - whether to print the dict_obj on error
+        RETURNS
+            dict_obj[key] - the value associated with the key for the dictionary 
+                            OR, if an error is encountered, returns returnOnError
+
     """
     try:
         return dict_obj[key]

@@ -3,8 +3,8 @@ import finnAPI
 from utilities import safe_index
 
 """
-    Using the finnhub API collect introductory information on 
-    all available companies.
+    Using the finnhub API, collect introductory information on 
+    all available companies, and write it to CSV.
 
     exchange_to_collect: refer to https://finnhub.io/docs/api#stock-symbols
                             a good default is 'US'

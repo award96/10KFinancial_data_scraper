@@ -8,7 +8,8 @@ import timeSeries
 """
     An object to keep track of the meaning behind a dataframe (ie what industry are we looking at)
     and to smooth the process of synthesizing JSON and CSV data, then writing it to a new csv file.
-
+    
+    example usage:
     hp = HorizontalProfile(**args)
     hp.write_to_output()
 """
@@ -70,6 +71,9 @@ class HorizontalProfile(HorizontalSuper):
                                             self.year,
                                             self.baseYear)
     def validateDF(self, newDF, write_on_error):
+        """ returns True if the new dataframe
+            has the same number of rows AND more columns
+        """
         if (type(newDF) != pd.core.frame.DataFrame):
             raise ValueError(f"new dataframe is of type {type(newDF)}, should be pandas dataframe")
         lengthOld = self.df.shape[0]

@@ -1,9 +1,6 @@
 import pandas as pd
 
 """
-    This project is forked from a project that had two
-    horizontal classes sharing this parent class.
-
     This parent class is used by the child class
     HorizontalProfile
 """
