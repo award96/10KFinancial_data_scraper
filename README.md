@@ -26,6 +26,16 @@ conceptList - the list of concepts you want to record data on. Concepts function
 Once the script is finished. Look at ```summary_output``` for a view company-centric view of the data, and ```timeseries_output``` for a statement-centric view
 
 # Example Data Insights
+
+## US Biotech Companies
+
+How does Novavax, a breakout 2020 stock due to their Covid-19 vaccine, compare to other US Biotech companies?
+
+### Novavax Spending and Earnings by Year for Key Measures
+![Yearly changes in spending for General and Administrative Expense, Research and Development. Alongside changes in Revenues and Net Income](./example_graphs/exp_earn.png)
+### How Those Measures Compare to Other US Biotech Companies
+![The percentile for those measures as compared to other US biotech companies with non-null data in the Finnhub database](./example_graphs/percentiles.png)
+## S&P500 (All Industries)
 ### A histogram of the percent change of Net Income for NYSE companies over 2018-2019. Not every NYSE company was available through FinnHub. The high and low outliers have been excluded to fit the graph onto one page.
 ![A histogram of the percent change of Net Income for NYSE companies over 2018-2019. Not every NYSE company was available through FinnHub. The high and low outliers have been excluded to fit the graph onto one page.](./example_graphs/histo_2018-2019.png)
 
