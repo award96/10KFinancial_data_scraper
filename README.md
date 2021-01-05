@@ -35,11 +35,13 @@ How does Novavax, a breakout 2020 stock due to their Covid-19 vaccine, compare t
 ![Yearly changes in spending for General and Administrative Expense, Research and Development. Alongside changes in Revenues and Net Income](./example_graphs/exp_earn.png)
 ### How Those Measures Compare to Other US Biotech Companies
 ![The percentile for those measures as compared to other US biotech companies with non-null data in the Finnhub database](./example_graphs/percentiles.png)
-## S&P500 (All Industries)
-### A histogram of the percent change of Net Income for NYSE companies over 2018-2019. Not every NYSE company was available through FinnHub. The high and low outliers have been excluded to fit the graph onto one page.
+
+What jumps out is that Novavax is spending more than most companies, especially in Research and Development. Interestingly, they have comparitavely high revenues with comparitavely low income.
+## NYSE (All Industries)
+### A histogram of the percent change of Net Income for NYSE companies from 2018 to 2019.The high and low outliers have been excluded to fit the graph onto one page.
 ![A histogram of the percent change of Net Income for NYSE companies over 2018-2019. Not every NYSE company was available through FinnHub. The high and low outliers have been excluded to fit the graph onto one page.](./example_graphs/histo_2018-2019.png)
 
-### A bar graph comparing the average percent change of Net Income for NYSE companies across industries for 2018-2019. Not every NYSE company was available through FinnHub. The number of companies behind each data point varies, the minimum being 10.
+### A bar graph comparing the average percent change, by industry, of Net Income for NYSE companies from 2018 to 2019. The number of companies behind each data point varies, the minimum being 10.
 ![A bar graph comparing the percent change of Net Income for NYSE companies across industry for 2018-2019. Not every NYSE company was available through FinnHub. The number of companies behind each data point varies, the minimum being 10.](./example_graphs/perc_change_by_industry.png)
 
 ### A bar graph indicating the number of companies behind each data point of the previous graph
