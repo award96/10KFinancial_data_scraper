@@ -27,6 +27,7 @@ Once the script is finished. Look at ```summary_output``` for a view company-cen
 
 # Example Data Insights
 
+Using this Python package you can download data that has immediate use. Below are examples of exploratory analytics performed on data downloaded with this package.
 ## US Biotech Companies
 
 How does Novavax, a breakout 2020 stock due to their Covid-19 vaccine, compare to other US Biotech companies?
